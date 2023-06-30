@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: green;
+    margin: 0;
+   font-family: Helvetica;
+}
+.alphabet {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 13;
+    align-items: start;
+    justify-content: left;
+}
