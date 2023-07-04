@@ -2,9 +2,11 @@
     box-sizing: border-box;
 }
 body {
-    background-color: green;
+    background-color: skyblue;
     margin: 0;
    font-family: Helvetica;
+   display: grid;
+   gap: 5vmin;
 }
 .alphabet {
     margin: 10px;
@@ -13,4 +15,18 @@ body {
     grid-template-rows: 13;
     align-items: start;
     justify-content: left;
+    overflow: auto;
+    padding: 1em;
+    border-radius: 5%;
+    position: absolute;
+}
+
+p {
+    margin: auto;
+    align-content: center;
+    justify-content: center;
+}
+h1 {
+    margin: 0 auto;
+    align-content: center;
 }

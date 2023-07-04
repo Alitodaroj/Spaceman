@@ -1,18 +1,4 @@
-// const alphabet = [...'abcdefghijklmnopqrstuvwxyz'];
-
-// function alphabet = 
-
-// console.log("alphabet")
-
-
-// let letter2 = document.getElementById("char2");
-
-// letter2.innerHTML = "B"
-
-// let letter3 = document.getElementById("char3");
-
-// letter3.innerHTML = "C"
-
+/*----- constants -----*/
 const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P","Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
 alphabet.forEach((letter, index) => {
@@ -21,3 +7,22 @@ alphabet.forEach((letter, index) => {
     letter1.innerHTML = letter
     console.log(letter, index)
 });
+/*----- app's state (variables) -----*/
+let guesses;
+
+let win;
+
+
+/*----- cached element references -----*/
+
+
+
+/*----- event listeners -----*/
+// function handleCellClick(event) {
+//     let cell =event.target;
+//     if 
+// }
+
+
+/*----- functions -----*/
+init()
