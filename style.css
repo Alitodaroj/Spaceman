@@ -8,10 +8,11 @@ body {
    display: grid;
    gap: 5vmin;
 }
+
 .alphabet {
     margin: 10px;
     display: grid;
-    grid-template-columns: 2;
+    grid-template-columns: 75% 75%;
     grid-template-rows: 13;
     align-items: start;
     justify-content: left;
@@ -19,6 +20,8 @@ body {
     padding: 1em;
     border-radius: 5%;
     position: absolute;
+    row-gap: 5vmin;
+    column-gap: 1vmin;
 }
 
 p {
@@ -26,7 +29,7 @@ p {
     align-content: center;
     justify-content: center;
 }
-h1 {
+h1, h2 {
     margin: 0 auto;
     align-content: center;
 }
