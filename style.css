@@ -24,12 +24,37 @@ body {
     column-gap: 1vmin;
 }
 
-p {
-    margin: auto;
-    align-content: center;
-    justify-content: center;
-}
 h1, h2 {
     margin: 0 auto;
     align-content: center;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100 vh;
+}
+
+#guesses {
+    border: solid black 2px;
+    display: grid;
+    grid-template-rows: 3;
+    grid-template-columns: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    align-items: center;
+    justify-content: center;
+    padding: 5vmin;
+    bottom: 0;
+    position: absolute;
+    height: 20vh;
+    width: 20vh;
+}
+
+#reset {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    justify-content: center;
 }
