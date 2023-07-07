@@ -6,21 +6,21 @@ alphabet.forEach((letter, index) => {
     let letter1 = document.getElementById(`${letter}`);
     
     letter1.innerHTML = letter;
-    console.log(letter, index);
 })
+
 const guess = document.querySelectorAll(".alphabet div");
 guess.forEach((letter) => {
     letter.addEventListener("click", evt => {
-        letter.innerHTML = " ";
+        checkLetter(letter) 
         console.log(letter)
     })
 })
 
 
 /*----- app's state (variables) -----*/
-let guesses;
-
+let guesses = [];
 let win;
+let maxAttempts = 6;
 
 
 
@@ -29,24 +29,33 @@ const words = ["elephant","conditional", "helicopter", "octupus"]
 
 
 /*----- event listeners -----*/
-// function handleCellClick(event) {
-//     let cell =event.target;
-//     if 
-// }
+
 
 
 /*----- functions -----*/
 // init()
-function getRandomItem(words) {
+let solving = function(words) {
     const randomIndex = Math.floor(Math.random() * words.length);
     const item = words[randomIndex];
     return item;
 }
 
-const result = getRandomItem(words);
+const wordToGuess = solving(words);
+console.log(wordToGuess)
 
 
-console.log(result)
+const wordArray = wordToGuess.split("");
+const blankWordArray = wordArray.map(() => "_");
+console.log(blankWordArray);
+let guessEl = document.querySelector("#guesses")
+blankWordArray.forEach(dash => {
+    let selectedWord = document.createElement("div");
+    selectedWord.innerHTML = dash;
+    selectedWord.classList.add("dash");
+    guessEl.appendChild(selectedWord);
+})
+
+let hiddenWord = document.querySelectorAll(".dash");
 
 document.getElementById("reset").addEventListener("click", handleResetButton);
 
@@ -58,7 +67,30 @@ function handleResetButton(event) {
     })
 }
 
+function displayWord() {
+    console.log(blankWordArray.join(""));
+}
 
+function checkLetter(guessEl) {
+    if (guesses.includes(guessEl.innerHTML)) {
+        console.log("this letter has been guessed")
+    } else {
+        guesses.push(guessEl.innerHTML);
+            if (wordToGuess.includes(guessEl.innerHTML.toLowerCase())) {
+                for(let i = 0; i < wordToGuess.length; i++) {
+                    if (wordToGuess.charAt(i) === guessEl.innerHTML.toLowerCase()) {
+                        hiddenWord[i].innerText = wordToGuess.charAt(i);
+                    }  else {
+
+                    }
+                }
+            } else {
+                console.log("this letter is not part of the word")
+            }
+    }
+}
+
+guesses.push(guessEl);
 
 // function render() {
 
