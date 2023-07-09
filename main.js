@@ -20,13 +20,14 @@ guess.forEach((letter) => {
 /*----- app's state (variables) -----*/
 let guesses = [];
 let win;
-let maxAttempts = 6;
+let lives = 6;
+
 
 
 
 /*----- cached element references -----*/
 const words = ["elephant","conditional", "helicopter", "octupus"]
-
+const showLives = document.getElementById("mylives");
 
 /*----- event listeners -----*/
 
@@ -39,33 +40,45 @@ let solving = function(words) {
     const item = words[randomIndex];
     return item;
 }
+let wordToGuess = solving(words);
+let reset1 = function() {
 
-const wordToGuess = solving(words);
+
+
+
 console.log(wordToGuess)
 
 
 const wordArray = wordToGuess.split("");
 const blankWordArray = wordArray.map(() => "_");
-console.log(blankWordArray);
 let guessEl = document.querySelector("#guesses")
+
 blankWordArray.forEach(dash => {
     let selectedWord = document.createElement("div");
     selectedWord.innerHTML = dash;
     selectedWord.classList.add("dash");
     guessEl.appendChild(selectedWord);
-})
+    })
+}
+reset1();
 
 let hiddenWord = document.querySelectorAll(".dash");
 
 document.getElementById("reset").addEventListener("click", handleResetButton);
 
 function handleResetButton(event) {
-    const reset = document.querySelectorAll(".alphabet div");
-    reset.forEach((letter, index) => {
-        letter.innerHTML = alphabet[index]
-        console.log(letter)
-    })
-}
+    let guessEl = document.querySelector("#guesses")
+    while (guessEl.firstChild) {
+        guessEl.removeChild(guessEl.firstChild);
+        }
+        lives = 6;
+        let myLives = document.querySelector("#mylives");
+        myLives.innerHTML = "You have " + lives + " lives"; 
+    guesses = [];
+        reset1();
+    };
+
+
 
 function displayWord() {
     console.log(blankWordArray.join(""));
@@ -73,24 +86,44 @@ function displayWord() {
 
 function checkLetter(guessEl) {
     if (guesses.includes(guessEl.innerHTML)) {
-        console.log("this letter has been guessed")
+        console.log("this letter has been guessed");
     } else {
         guesses.push(guessEl.innerHTML);
+        console.log(guesses);
+        console.log(wordToGuess);
             if (wordToGuess.includes(guessEl.innerHTML.toLowerCase())) {
                 for(let i = 0; i < wordToGuess.length; i++) {
                     if (wordToGuess.charAt(i) === guessEl.innerHTML.toLowerCase()) {
-                        hiddenWord[i].innerText = wordToGuess.charAt(i);
+                        let hiddenWord = document.querySelectorAll(".dash");
+                        hiddenWord[i].innerHTML = wordToGuess.charAt(i);
+                        console.log("correct");
+                        console.log(hiddenWord);
                     }  else {
-
+                        
                     }
                 }
             } else {
                 console.log("this letter is not part of the word")
+                lives--;
+                
             }
+        comments();
     }
 }
 
-guesses.push(guessEl);
+function comments () {
+    showLives.innerHTML = "You have " + lives + " lives";
+    if (lives < 1) {
+      showLives.innerHTML = "Game Over";
+    }
+    else if (hiddenWord.length === guesses.length) {
+        showLives.innerHTML = "You Win!";
+      }
+};
+      
+
+console.log(comments);
+
 
 // function render() {
 
