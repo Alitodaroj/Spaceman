@@ -116,15 +116,11 @@ function comments () {
     if (lives < 1) {
       showLives.innerHTML = "Game Over";
     }
-    else if (hiddenWord.length === guesses.length) {
-        showLives.innerHTML = "You Win!";
-      }
+    else if (hiddenWord.length === wordToGuess.length) {
+        let hiddenWordString = Array.from(hiddenWord).map(blankLine => blankLine.innerHTML).join("");
+        if (hiddenWordString === wordToGuess) {
+            showLives.innerHTML = "You Win!";
+        }
+    }
 };
-      
-
-console.log(comments);
-
-
-// function render() {
-
-// }
+  
