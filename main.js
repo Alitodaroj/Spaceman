@@ -1,6 +1,5 @@
 /*----- constants -----*/
 const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P","Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const resetGameButton = document.getElementById("reset");
 
 alphabet.forEach((letter, index) => {
     let letter1 = document.getElementById(`${letter}`);
@@ -40,27 +39,25 @@ let solving = function(words) {
     const item = words[randomIndex];
     return item;
 }
-let wordToGuess = solving(words);
+let wordToGuess;
+
 let reset1 = function() {
+    wordToGuess = solving(words);
+    console.log(wordToGuess)
+    const wordArray = wordToGuess.split("");
+    const blankWordArray = wordArray.map(() => "_");
+    let selectedGuess = document.querySelector("#guesses");
+    selectedGuess.innerHTML = "";
 
-
-
-
-console.log(wordToGuess)
-
-
-const wordArray = wordToGuess.split("");
-const blankWordArray = wordArray.map(() => "_");
-let guessEl = document.querySelector("#guesses")
-
-blankWordArray.forEach(dash => {
-    let selectedWord = document.createElement("div");
-    selectedWord.innerHTML = dash;
-    selectedWord.classList.add("dash");
-    guessEl.appendChild(selectedWord);
-    })
+    blankWordArray.forEach(dash => {
+        let selectedWord = document.createElement("div");
+        selectedWord.innerHTML = dash;
+        selectedWord.classList.add("dash");
+        selectedGuess.appendChild(selectedWord);
+        })
 }
-reset1();
+
+reset1()
 
 let hiddenWord = document.querySelectorAll(".dash");
 
@@ -84,16 +81,16 @@ function displayWord() {
     console.log(blankWordArray.join(""));
 }
 
-function checkLetter(guessEl) {
-    if (guesses.includes(guessEl.innerHTML)) {
+function checkLetter(selectedGuess) {
+    if (guesses.includes(selectedGuess.innerHTML)) {
         console.log("this letter has been guessed");
     } else {
-        guesses.push(guessEl.innerHTML);
+        guesses.push(selectedGuess.innerHTML);
         console.log(guesses);
         console.log(wordToGuess);
-            if (wordToGuess.includes(guessEl.innerHTML.toLowerCase())) {
+            if (wordToGuess.includes(selectedGuess.innerHTML.toLowerCase())) {
                 for(let i = 0; i < wordToGuess.length; i++) {
-                    if (wordToGuess.charAt(i) === guessEl.innerHTML.toLowerCase()) {
+                    if (wordToGuess.charAt(i) === selectedGuess.innerHTML.toLowerCase()) {
                         let hiddenWord = document.querySelectorAll(".dash");
                         hiddenWord[i].innerHTML = wordToGuess.charAt(i);
                         console.log("correct");
